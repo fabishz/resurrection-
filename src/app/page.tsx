@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
-import FeedList from '@/components/FeedList';
+import Header from '@/components/shared/Header';
+import FeedList from '@/components/shared/FeedList';
 
 export default function Home() {
   return (
