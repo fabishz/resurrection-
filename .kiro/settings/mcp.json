@@ -1,0 +1,84 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "uvx",
+      "args": ["mcp-server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_YOUR_TOKEN_HERE"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "create_or_update_file",
+        "search_repositories",
+        "get_file_contents",
+        "list_commits"
+      ],
+      "description": "GitHub integration for repository management, PR creation, issue tracking, and code search"
+    },
+    "vercel": {
+      "command": "node",
+      "args": ["/path/to/mcp-server-vercel/dist/index.js"],
+      "env": {
+        "VERCEL_TOKEN": "YOUR_VERCEL_TOKEN_HERE",
+        "VERCEL_TEAM_ID": "YOUR_TEAM_ID_HERE"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "list_deployments",
+        "get_deployment_status"
+      ],
+      "description": "Vercel integration for deployment management, preview URLs, and build status monitoring"
+    },
+    "openai-summarizer": {
+      "command": "uvx",
+      "args": ["mcp-server-openai"],
+      "env": {
+        "OPENAI_API_KEY": "sk-YOUR_OPENAI_KEY_HERE",
+        "OPENAI_MODEL": "gpt-4o-mini",
+        "OPENAI_MAX_TOKENS": "500"
+      },
+      "disabled": false,
+      "autoApprove": [],
+      "description": "OpenAI GPT-4o-mini for article summarization, content categorization, and AI-powered features"
+    },
+    "redis-cache": {
+      "command": "node",
+      "args": ["/path/to/mcp-server-redis/dist/index.js"],
+      "env": {
+        "REDIS_URL": "redis://default:YOUR_PASSWORD@YOUR_HOST:6379",
+        "REDIS_TLS": "true"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "get",
+        "set",
+        "del",
+        "exists"
+      ],
+      "description": "Redis cache for storing AI summaries, feed data, and API responses with TTL management"
+    },
+    "filesystem": {
+      "command": "uvx",
+      "args": ["mcp-server-filesystem", "--allowed-directories", "./src", "./public", "./.kiro"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "read_file",
+        "list_directory"
+      ],
+      "description": "Filesystem access for reading project files, analyzing code structure, and generating documentation"
+    },
+    "postgres": {
+      "command": "uvx",
+      "args": ["mcp-server-postgres"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "postgresql://user:password@host:5432/rss_renaissance?sslmode=require"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "query"
+      ],
+      "description": "PostgreSQL database access for feed management, article storage, and analytics queries"
+    }
+  }
+}

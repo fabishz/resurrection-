@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode colors */
+    --color-primary: 59 130 246; /* blue-500 */
+    --color-primary-hover: 37 99 235; /* blue-600 */
+    
+    /* Halloween theme colors */
+    --color-halloween-orange: 255 107 53;
+    --color-halloween-purple: 107 53 255;
+    --color-halloween-green: 53 255 107;
+    --color-halloween-blood: 139 0 0;
+    --color-halloween-midnight: 10 10 20;
+    --color-halloween-fog: 232 232 240;
+  }
+
+  .dark {
+    /* Dark mode inherits the same color variables */
+    /* Tailwind's dark: variant handles the switching */
+  }
+
+  * {
+    @apply border-neutral-200 dark:border-neutral-800;
+  }
+
+  body {
+    @apply bg-white dark:bg-midnight text-neutral-900 dark:text-neutral-50;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Custom scrollbar for dark mode */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100 dark:bg-neutral-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 dark:bg-neutral-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400 dark:bg-neutral-600;
+  }
+}
+
+@layer components {
+  /* Button variants */
+  .btn-primary {
+    @apply px-4 py-2 bg-halloween-orange text-white rounded-lg font-medium;
+    @apply hover:bg-halloween-purple transition-colors duration-150;
+    @apply focus:outline-none focus:ring-2 focus:ring-halloween-purple focus:ring-offset-2;
+    @apply dark:focus:ring-offset-neutral-900;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg font-medium;
+    @apply hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors duration-150;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply dark:focus:ring-offset-neutral-900;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 text-halloween-purple hover:bg-halloween-purple/10 rounded-lg font-medium;
+    @apply transition-colors duration-150;
+    @apply focus:outline-none focus:ring-2 focus:ring-halloween-purple focus:ring-offset-2;
+    @apply dark:focus:ring-offset-neutral-900;
+  }
+
+  /* Card component */
+  .card {
+    @apply p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800;
+    @apply rounded-xl shadow-sm hover:shadow-md transition-shadow duration-150;
+  }
+
+  /* Input field */
+  .input {
+    @apply px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700;
+    @apply rounded-lg text-neutral-900 dark:text-neutral-100;
+    @apply focus:outline-none focus:ring-2 focus:ring-halloween-purple focus:border-transparent;
+    @apply transition-shadow duration-75;
+    @apply placeholder:text-neutral-400 dark:placeholder:text-neutral-500;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-orange {
+    @apply bg-halloween-orange/10 text-halloween-orange;
+  }
+
+  .badge-purple {
+    @apply bg-halloween-purple/10 text-halloween-purple;
+  }
+
+  .badge-green {
+    @apply bg-halloween-green/10 text-halloween-green;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-halloween-orange to-halloween-purple;
+  }
+
+  /* Glow effects for dark mode */
+  .glow-orange {
+    @apply dark:shadow-[0_0_20px_rgba(255,107,53,0.3)];
+  }
+
+  .glow-purple {
+    @apply dark:shadow-[0_0_20px_rgba(107,53,255,0.3)];
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

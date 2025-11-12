@@ -1,0 +1,11 @@
+{
+  "name": "Auto-generate Tests on Save",
+  "description": "Automatically generate or update unit tests when implementation files are saved",
+  "event": "onFileSave",
+  "filePattern": "src/**/*.{ts,tsx}",
+  "excludePattern": "src/**/*.test.{ts,tsx}",
+  "enabled": true,
+  "prompt": "A source file was just saved at {{filePath}}. Analyze this file and:\n\n1. Check if a corresponding test file exists (same name with .test.ts or .test.tsx extension)\n2. If no test file exists, create one with comprehensive unit tests covering:\n   - All exported functions and methods\n   - Edge cases and error handling\n   - TypeScript type safety\n   - Mock external dependencies appropriately\n3. If a test file exists, review it and:\n   - Add tests for any new functions/methods not yet covered\n   - Update existing tests if function signatures changed\n   - Ensure test coverage is comprehensive\n\nFollow these testing standards:\n- Use Vitest as the test framework\n- Use @testing-library/react for React components\n- Aim for 80%+ code coverage\n- Write descriptive test names using 'should' or 'it' patterns\n- Group related tests with describe blocks\n- Mock API calls and external dependencies\n- Test both success and failure scenarios\n\nDo NOT run the tests, just create/update the test file. Keep tests focused and minimal per our testing guidelines.",
+  "autoApprove": false,
+  "runInBackground": false
+}

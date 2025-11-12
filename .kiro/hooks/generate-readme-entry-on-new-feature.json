@@ -1,0 +1,10 @@
+{
+  "name": "Generate README Entry on New Feature",
+  "description": "Automatically add feature documentation to README when new feature components are created",
+  "event": "onFileSave",
+  "filePattern": "src/{components,features,lib}/**/*.{ts,tsx}",
+  "enabled": true,
+  "prompt": "A new file was created at {{filePath}}. Determine if this represents a new user-facing feature that should be documented in the README:\n\n1. Analyze the file to understand:\n   - Is this a new feature component or a core utility?\n   - Does it provide user-facing functionality?\n   - Is it a major feature or a minor helper?\n\n2. If this is a significant new feature (not just a utility or internal component):\n   - Read the current README.md\n   - Identify the appropriate section (usually 'Features' or 'Core Features')\n   - Generate a concise feature description (1-2 sentences) that includes:\n     * What the feature does\n     * Key benefit to users\n     * Any unique capabilities\n\n3. Create a README entry in this format:\n   ```markdown\n   ### [Feature Name]\n   Brief description of what it does and why it's useful.\n   \n   - Key capability 1\n   - Key capability 2\n   - Key capability 3\n   ```\n\n4. If the feature includes:\n   - API endpoints: Document the endpoint with method and path\n   - Configuration options: List key configuration parameters\n   - UI components: Mention where users can find it in the app\n   - Keyboard shortcuts: List the shortcuts\n\n5. Add the entry to README.md in the appropriate section, maintaining alphabetical or logical order\n\n6. If this is NOT a user-facing feature (internal utility, helper, etc.):\n   - Explain why no README update is needed\n   - Suggest if it should be documented elsewhere (like inline JSDoc)\n\nOnly update README for genuinely new features. Don't add entries for:\n- Internal utilities\n- Test files\n- Configuration files\n- Minor refactors of existing features\n\nKeep the README entry concise, user-focused, and consistent with existing entries.",
+  "autoApprove": false,
+  "runInBackground": false
+}

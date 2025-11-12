@@ -1,0 +1,10 @@
+{
+  "name": "Lint and Format on Pre-Commit",
+  "description": "Automatically lint and format staged files before commit",
+  "event": "onPreCommit",
+  "enabled": true,
+  "prompt": "Files are about to be committed. Run linting and formatting checks:\n\n1. Get the list of staged files using `git diff --cached --name-only`\n\n2. For TypeScript/JavaScript files (.ts, .tsx, .js, .jsx):\n   - Run ESLint: `npm run lint` or `eslint <files>`\n   - Fix auto-fixable issues: `eslint --fix <files>`\n   - Report any remaining errors that need manual fixing\n\n3. For all code files:\n   - Check formatting with Prettier (if configured)\n   - Auto-format files if needed\n\n4. Run TypeScript type checking on staged files:\n   - Use `tsc --noEmit` to check for type errors\n   - Report any type errors with file location and description\n\n5. Check for common issues:\n   - console.log statements (should use proper logging in production code)\n   - debugger statements (should be removed)\n   - TODO/FIXME comments (list them for awareness)\n   - Hardcoded secrets or API keys (security risk)\n\n6. Verify imports:\n   - No unused imports\n   - Imports are sorted/organized\n   - No circular dependencies\n\n7. Check file naming conventions:\n   - Components use PascalCase\n   - Utilities use camelCase\n   - Constants use UPPER_SNAKE_CASE\n\nIf any critical errors are found (type errors, lint errors), list them clearly and STOP the commit. For warnings, list them but allow commit to proceed.\n\nProvide a summary:\n- ✅ All checks passed\n- ⚠️ Warnings found (list them)\n- ❌ Errors found - commit blocked (list them with fix suggestions)",
+  "autoApprove": true,
+  "runInBackground": false,
+  "blockOnError": true
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Security Scan on Dependency Add",
+  "description": "Run security audit when package.json is modified to add new dependencies",
+  "event": "onFileSave",
+  "filePattern": "package.json",
+  "enabled": true,
+  "prompt": "The package.json file was just modified. Perform a security audit:\n\n1. Run `npm audit` to check for known vulnerabilities in dependencies\n\n2. Review any newly added dependencies:\n   - Check the package's npm page for:\n     * Weekly download count (prefer popular, well-maintained packages)\n     * Last publish date (avoid abandoned packages)\n     * Number of open issues vs closed issues\n     * License compatibility (must be MIT, Apache 2.0, or similar permissive license)\n   - Search for any known security issues with the package\n   - Verify the package is from a trusted publisher\n\n3. Check for dependency bloat:\n   - Identify if the new dependency adds many transitive dependencies\n   - Suggest lighter alternatives if the package is too heavy\n\n4. Verify the dependency is necessary:\n   - Could this functionality be implemented with existing dependencies?\n   - Is there a smaller, more focused package that does the same thing?\n\n5. If vulnerabilities are found:\n   - List each vulnerability with severity level\n   - Provide fix recommendations (update version, use alternative package)\n   - If no fix available, assess risk and recommend mitigation\n\n6. Update .npmrc or package.json with any security-related configurations needed\n\nProvide a summary with:\n- Security status (✅ Safe / ⚠️ Warnings / ❌ Critical issues)\n- Action items if any issues found\n- Recommendations for safer alternatives if applicable",
+  "autoApprove": false,
+  "runInBackground": false
+}

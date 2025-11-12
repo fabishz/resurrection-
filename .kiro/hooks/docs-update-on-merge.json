@@ -1,0 +1,10 @@
+{
+  "name": "Update Documentation on Merge",
+  "description": "Automatically update relevant documentation when code is merged to main branch",
+  "event": "onGitMerge",
+  "targetBranch": "main",
+  "enabled": true,
+  "prompt": "Code was just merged to the main branch. Review the changed files and update documentation accordingly:\n\n1. Analyze the git diff to understand what changed:\n   - New features added\n   - API changes or new endpoints\n   - Configuration changes\n   - Breaking changes\n\n2. Update the following documentation files as needed:\n   - README.md: Add new features to feature list, update setup instructions if needed\n   - .kiro/specs/project-overview.md: Update if major features were added or architecture changed\n   - API documentation: Document any new API routes or changes to existing ones\n   - Component documentation: Add JSDoc comments to new components\n\n3. If this merge includes breaking changes:\n   - Add a BREAKING CHANGE notice to the relevant docs\n   - Update migration guides if they exist\n\n4. Check if any code examples in docs need updating due to API changes\n\n5. Update the 'Last Updated' date in modified documentation files\n\nFocus on user-facing documentation. Keep updates concise and actionable. If no documentation updates are needed, explain why.",
+  "autoApprove": false,
+  "runInBackground": false
+}
