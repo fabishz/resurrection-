@@ -11,11 +11,13 @@
   "dependencies": {
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "rss-parser": "^3.13.0",
+    "tailwind-merge": "^3.4.0",
     "vitest": "^4.0.8"
   },
   "devDependencies": {
