@@ -1,0 +1,24 @@
+# Placeholder for Architecture Diagram
+
+**Filename**: architecture-diagram.png
+**Description**: Visual representation of system architecture.
+
+## Creation Instructions
+
+1. Use Excalidraw, draw.io, or Mermaid to create diagram
+2. Include key components:
+   - User Interface (Next.js + React)
+   - Client-side layer (IndexedDB, Zustand, Service Worker)
+   - API Routes layer (/api/ingest, /api/summarize, /api/feeds)
+   - Business Logic layer (Feed Parser, Deduplicator, Summarizer)
+   - Caching layer (Redis)
+   - Data Persistence layer (PostgreSQL)
+   - External Services (RSS Feeds, OpenAI API, Vercel Edge)
+3. Show data flow with arrows
+4. Export as PNG (1920x1080 recommended)
+
+## Reference
+
+See `submission/short_architecture.pdf` for ASCII diagram that can be converted to visual diagram.
+
+**Replace this file with actual diagram: architecture-diagram.png**

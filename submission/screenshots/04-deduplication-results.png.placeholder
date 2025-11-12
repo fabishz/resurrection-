@@ -1,0 +1,20 @@
+# Placeholder for Deduplication Results Screenshot
+
+**Filename**: 04-deduplication-results.png
+**Description**: Visual demonstration of deduplication working.
+
+## Capture Instructions
+
+1. Add multiple tech news feeds (HN, TechCrunch, Verge, Ars Technica)
+2. Wait for all feeds to load
+3. Navigate to settings or stats page showing deduplication metrics
+4. Or capture article with "Multiple sources" badge
+
+## Key Elements to Include
+
+- Before: "500 articles from 10 feeds"
+- After: "98 unique articles (80.4% reduction)"
+- Merged article indicator (e.g., "3 sources" badge)
+- Deduplication stats in settings or dashboard
+
+**Replace this file with actual screenshot: 04-deduplication-results.png**

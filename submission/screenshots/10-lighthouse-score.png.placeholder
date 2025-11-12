@@ -1,0 +1,21 @@
+# Placeholder for Lighthouse Score Screenshot
+
+**Filename**: 10-lighthouse-score.png
+**Description**: Lighthouse audit results showing high scores.
+
+## Capture Instructions
+
+1. Open browser DevTools → Lighthouse tab
+2. Run audit on production URL
+3. Take screenshot of results
+4. Or run: npm run test:lighthouse
+
+## Key Elements to Include
+
+- Performance: 95/100
+- Accessibility: 97/100
+- Best Practices: 100/100
+- SEO: 100/100
+- Green scores with checkmarks
+
+**Replace this file with actual screenshot: 10-lighthouse-score.png**

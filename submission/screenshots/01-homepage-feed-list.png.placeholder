@@ -1,0 +1,22 @@
+# Placeholder for Homepage Screenshot
+
+**Filename**: 01-homepage-feed-list.png
+**Description**: Main interface showing feed list with articles, dark mode enabled, Halloween theme visible.
+
+## Capture Instructions
+
+1. Run `npm run dev` to start local server
+2. Navigate to `http://localhost:3000`
+3. Ensure dark mode is enabled (toggle in header)
+4. Add 5-10 sample feeds (tech news, blogs)
+5. Take full-page screenshot (1920x1080 recommended)
+
+## Key Elements to Include
+
+- Feed sidebar with subscribed feeds
+- Article list with titles, excerpts, and metadata
+- Dark mode with Halloween color palette (orange, purple accents)
+- Unread badges and category tags
+- Search bar and filter options
+
+**Replace this file with actual screenshot: 01-homepage-feed-list.png**

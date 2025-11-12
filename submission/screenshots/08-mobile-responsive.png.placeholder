@@ -1,0 +1,20 @@
+# Placeholder for Mobile Responsive Screenshot
+
+**Filename**: 08-mobile-responsive.png
+**Description**: App on mobile device (375x667 iPhone SE size).
+
+## Capture Instructions
+
+1. Open browser DevTools → Device toolbar
+2. Select iPhone SE or similar (375x667)
+3. Navigate through app
+4. Take screenshot of homepage and article view
+
+## Key Elements to Include
+
+- Hamburger menu for feed sidebar
+- Stacked layout (mobile-first design)
+- Touch-friendly buttons (44px minimum)
+- Readable text without zooming
+
+**Replace this file with actual screenshot: 08-mobile-responsive.png**

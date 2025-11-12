@@ -1,0 +1,21 @@
+# Placeholder for Offline Mode Screenshot
+
+**Filename**: 05-offline-mode.png
+**Description**: App working in offline mode with cached content.
+
+## Capture Instructions
+
+1. Load app with articles
+2. Open browser DevTools → Network tab
+3. Enable "Offline" mode
+4. Refresh page
+5. Take screenshot showing offline indicator and working UI
+
+## Key Elements to Include
+
+- "Offline" indicator in header (orange badge)
+- Cached articles still readable
+- Grayed-out "Add Feed" button (disabled offline)
+- Toast notification: "You're offline. Showing cached content."
+
+**Replace this file with actual screenshot: 05-offline-mode.png**

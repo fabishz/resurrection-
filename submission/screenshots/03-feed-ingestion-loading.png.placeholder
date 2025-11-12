@@ -1,0 +1,20 @@
+# Placeholder for Feed Ingestion Screenshot
+
+**Filename**: 03-feed-ingestion-loading.png
+**Description**: UI showing feed being added with loading state.
+
+## Capture Instructions
+
+1. Click "Add Feed" button
+2. Enter feed URL: https://hnrss.org/frontpage
+3. Capture loading state (may need to use slow network throttling)
+4. Or capture success state with "50 articles added" message
+
+## Key Elements to Include
+
+- "Add Feed" modal or input field
+- Loading spinner with Halloween theme
+- Progress indicator (e.g., "Fetching 50 articles...")
+- Success message after completion
+
+**Replace this file with actual screenshot: 03-feed-ingestion-loading.png**

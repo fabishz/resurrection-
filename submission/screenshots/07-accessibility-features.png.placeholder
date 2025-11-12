@@ -1,0 +1,19 @@
+# Placeholder for Accessibility Features Screenshot
+
+**Filename**: 07-accessibility-features.png
+**Description**: Keyboard navigation and focus indicators.
+
+## Capture Instructions
+
+1. Use Tab key to navigate through interface
+2. Capture screenshot with focus ring visible on button/link
+3. Or show skip link by pressing Tab on page load
+
+## Key Elements to Include
+
+- Visible focus ring on interactive elements (purple)
+- Skip link visible at top ("Skip to main content")
+- Keyboard shortcut hints (e.g., "Press / to search")
+- High contrast text (WCAG AA compliant)
+
+**Replace this file with actual screenshot: 07-accessibility-features.png**
