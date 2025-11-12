@@ -58,5 +58,5 @@ export interface ApiError {
   success: false;
   error: string;
   code?: string;
-  details?: unknown;
+  details?: Array<{ path: string; message: string }>;
 }

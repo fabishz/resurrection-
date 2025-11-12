@@ -25,7 +25,10 @@ export async function POST(request: NextRequest) {
         success: false,
         error: 'Invalid request body',
         code: 'VALIDATION_ERROR',
-        details: validation.error.errors,
+        details: validation.error.issues.map((issue) => ({
+          path: issue.path.join('.'),
+          message: issue.message,
+        })),
       };
       return NextResponse.json(error, { status: 400 });
     }
