@@ -22,7 +22,38 @@ export async function fetchFeed(feedUrl: string): Promise<{
   items: FeedItem[];
 }> {
   try {
-    const parsedFeed = await parser.parseURL(feedUrl);
+    console.log(`[Feed Parser] Fetching feed from: ${feedUrl}`);
+
+    // Fetch the feed XML
+    const response = await fetch(feedUrl, {
+      headers: {
+        'User-Agent': 'RSS-Renaissance/1.0',
+        'Accept': 'application/rss+xml, application/xml, text/xml, application/atom+xml',
+      },
+      next: { revalidate: 300 }, // Cache for 5 minutes
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const contentType = response.headers.get('content-type') || '';
+    console.log(`[Feed Parser] Content-Type: ${contentType}`);
+
+    // Get the XML text
+    const xmlText = await response.text();
+    
+    if (!xmlText || xmlText.trim().length === 0) {
+      throw new Error('Empty response from feed URL');
+    }
+
+    console.log(`[Feed Parser] Received ${xmlText.length} bytes of XML`);
+
+    // Parse the XML using rss-parser
+    const parsedFeed = await parser.parseString(xmlText);
+
+    console.log(`[Feed Parser] Successfully parsed feed: ${parsedFeed.title}`);
+    console.log(`[Feed Parser] Found ${parsedFeed.items?.length || 0} items`);
 
     // Generate feed ID from URL
     const feedId = generateId(feedUrl);
@@ -55,9 +86,30 @@ export async function fetchFeed(feedUrl: string): Promise<{
       };
     });
 
+    console.log(`[Feed Parser] Processed ${items.length} items`);
+
     return { feed, items };
   } catch (error) {
+    console.error('[Feed Parser] Error:', error);
+    
     if (error instanceof Error) {
+      // Provide more specific error messages
+      if (error.message.includes('fetch failed')) {
+        throw new Error(`Network error: Unable to reach ${feedUrl}. Please check the URL and try again.`);
+      }
+      if (error.message.includes('HTTP 404')) {
+        throw new Error(`Feed not found (404). Please verify the URL is correct.`);
+      }
+      if (error.message.includes('HTTP 403')) {
+        throw new Error(`Access forbidden (403). The feed may block automated requests.`);
+      }
+      if (error.message.includes('HTTP 500') || error.message.includes('HTTP 502') || error.message.includes('HTTP 503')) {
+        throw new Error(`Server error. The feed server is temporarily unavailable.`);
+      }
+      if (error.message.includes('timeout')) {
+        throw new Error(`Request timeout. The feed server took too long to respond.`);
+      }
+      
       throw new Error(`Failed to fetch feed: ${error.message}`);
     }
     throw new Error('Failed to fetch feed: Unknown error');
