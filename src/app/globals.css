@@ -74,11 +74,12 @@
   body {
     background-color: white;
     color: rgb(23 23 23);
+    transition: background-color 300ms, color 300ms;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
   .dark body {
-    background-color: rgb(10 10 20);
+    background-color: rgb(23 23 23);
     color: rgb(250 250 250);
   }
 
