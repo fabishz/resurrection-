@@ -4,6 +4,11 @@ import FeedList from '@/components/shared/FeedList';
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Tailwind Test Banner */}
+      <div className="bg-primary-500 text-white p-4 text-center font-bold text-xl">
+        🎉 Tailwind CSS v4 is Working! 🎉
+      </div>
+      
       <Header />
       <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
         <div className="mb-8">
@@ -13,6 +18,22 @@ export default function Home() {
           <p className="text-lg text-neutral-600 dark:text-neutral-400">
             Resurrect your RSS feeds with AI-powered intelligence
           </p>
+        </div>
+
+        {/* Tailwind Test Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="bg-halloween-orange text-white p-6 rounded-xl shadow-lg">
+            <h3 className="font-bold text-lg mb-2">Halloween Orange</h3>
+            <p className="text-sm">Custom theme color working!</p>
+          </div>
+          <div className="bg-halloween-purple text-white p-6 rounded-xl shadow-lg">
+            <h3 className="font-bold text-lg mb-2">Halloween Purple</h3>
+            <p className="text-sm">Custom theme color working!</p>
+          </div>
+          <div className="bg-halloween-green text-white p-6 rounded-xl shadow-lg">
+            <h3 className="font-bold text-lg mb-2">Halloween Green</h3>
+            <p className="text-sm">Custom theme color working!</p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

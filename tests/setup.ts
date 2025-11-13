@@ -7,12 +7,15 @@ afterEach(() => {
   cleanup();
 });
 
-// Mock environment variables
-process.env.NODE_ENV = 'test';
-process.env.REDIS_URL = '';
-process.env.SUMMARY_CACHE_TTL = '0';
-process.env.SUMMARIZER_RATE_LIMIT = '100';
-process.env.SUMMARIZER_RATE_WINDOW_MS = '3600000';
+// Mock environment variables for tests
+// ✅ Do NOT assign to NODE_ENV - it's read-only in Next.js
+// ✅ Use Object.assign to safely add test environment variables
+Object.assign(process.env, {
+  REDIS_URL: '',
+  SUMMARY_CACHE_TTL: '0',
+  SUMMARIZER_RATE_LIMIT: '100',
+  SUMMARIZER_RATE_WINDOW_MS: '3600000',
+});
 
 // Mock Next.js router
 vi.mock('next/navigation', () => ({
@@ -42,7 +45,6 @@ Object.defineProperty(window, 'matchMedia', {
 
 // Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
-  constructor() {}
   disconnect() {}
   observe() {}
   takeRecords() {

@@ -1,16 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    /* Halloween theme colors */
+    --color-halloween-orange: #ff6b35;
+    --color-halloween-purple: #6b35ff;
+    --color-halloween-green: #35ff6b;
+    --color-halloween-blood: #8b0000;
+    --color-halloween-midnight: #0a0a14;
+    --color-halloween-fog: #e8e8f0;
+    
+    /* Midnight alias */
+    --color-midnight: #0a0a14;
+    
+    /* Primary colors */
+    --color-primary-50: #f0f9ff;
+    --color-primary-100: #e0f2fe;
+    --color-primary-200: #bae6fd;
+    --color-primary-300: #7dd3fc;
+    --color-primary-400: #38bdf8;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+    
+    /* Box shadows */
+    --shadow-glow-orange: 0 0 20px rgba(255, 107, 53, 0.3);
+    --shadow-glow-purple: 0 0 20px rgba(107, 53, 255, 0.3);
+    
+    /* Animations */
+    --animate-fade-in: fadeIn 0.3s ease-out;
+    --animate-slide-up: slideUp 0.3s ease-out;
+    --animate-slide-down: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
 
 @layer base {
   :root {
-    /* Halloween theme colors */
-    --color-halloween-orange: 255 107 53;
-    --color-halloween-purple: 107 53 255;
-    --color-halloween-green: 53 255 107;
-    --color-halloween-blood: 139 0 0;
-    --color-halloween-midnight: 10 10 20;
-    --color-halloween-fog: 232 232 240;
+    /* CSS variables for runtime use */
+    --color-halloween-orange-rgb: 255 107 53;
+    --color-halloween-purple-rgb: 107 53 255;
+    --color-halloween-green-rgb: 53 255 107;
+    --color-halloween-blood-rgb: 139 0 0;
+    --color-halloween-midnight-rgb: 10 10 20;
+    --color-halloween-fog-rgb: 232 232 240;
   }
 
   * {
