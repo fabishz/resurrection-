@@ -39,15 +39,15 @@ const FEATURED_FEEDS = [
 
 export default function DiscoverPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-neutral-900">
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-3 text-neutral-900 dark:text-neutral-50">
+          <h1 className="text-4xl font-bold mb-3 text-white">
             Discover Feeds
           </h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400">
+          <p className="text-xl text-neutral-300">
             Explore popular RSS feeds across different categories
           </p>
         </div>

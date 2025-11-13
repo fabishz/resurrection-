@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import Icon from '@/components/ui/Icon';
 import { APP_CONFIG } from '@/config/app';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-neutral-900 px-4">
       <div className="text-center max-w-2xl">
-        <div className="text-8xl mb-6">🎃</div>
+        <div className="flex justify-center mb-6">
+          <Icon name="error" className="w-32 h-32 text-halloween-orange dark:text-halloween-purple" />
+        </div>
         
         <h1 className="text-6xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">
           404

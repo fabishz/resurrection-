@@ -4,7 +4,6 @@ import FeedList from '@/components/shared/FeedList';
 import ArticleList from '@/components/shared/ArticleList';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
-import Icon from '@/components/ui/Icon';
 import { APP_CONFIG } from '@/config/app';
 
 export default function Home() {
@@ -13,13 +12,11 @@ export default function Home() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section with Dark Background */}
-        <div className="bg-gradient-to-br from-neutral-900 via-neutral-950 to-black py-20 px-4 border-b border-neutral-800">
+        {/* Hero Section with Gradient */}
+        <div className="bg-gradient-to-br from-halloween-orange via-halloween-purple to-halloween-green py-20 px-4">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center text-white animate-fade-in">
-              <div className="flex justify-center mb-6">
-                <Icon name="rss" variant="solid" className="w-20 h-20" />
-              </div>
+              <div className="text-6xl mb-6">🎃</div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
                 Welcome to {APP_CONFIG.name}
               </h1>
@@ -29,16 +26,14 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/feeds"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-halloween-orange text-white font-bold rounded-xl hover:bg-halloween-purple transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="px-8 py-4 bg-white text-halloween-orange font-bold rounded-xl hover:bg-neutral-100 transition-all duration-300 hover:scale-105 shadow-lg"
                 >
-                  <Icon name="plus" size="md" />
                   Get Started
                 </Link>
                 <Link
                   href="/discover"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neutral-800 text-white font-bold rounded-xl hover:bg-neutral-700 transition-all duration-300 border-2 border-neutral-700"
+                  className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/30 transition-all duration-300 border-2 border-white/50"
                 >
-                  <Icon name="search" size="md" />
                   Discover Feeds
                 </Link>
               </div>
@@ -51,15 +46,13 @@ export default function Home() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { label: 'Active Feeds', value: '1,000+', icon: 'rss' },
-                { label: 'Articles Processed', value: '50K+', icon: 'document' },
-                { label: 'AI Summaries', value: '25K+', icon: 'sparkles' },
-                { label: 'Happy Users', value: '500+', icon: 'users' },
+                { label: 'Active Feeds', value: '1,000+', icon: '📰' },
+                { label: 'Articles Processed', value: '50K+', icon: '📄' },
+                { label: 'AI Summaries', value: '25K+', icon: '🤖' },
+                { label: 'Happy Users', value: '500+', icon: '😊' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center animate-slide-up">
-                  <div className="flex justify-center mb-2">
-                    <Icon name={stat.icon as any} size="xl" className="text-halloween-orange dark:text-halloween-purple" />
-                  </div>
+                  <div className="text-4xl mb-2">{stat.icon}</div>
                   <div className="text-3xl font-bold text-halloween-orange dark:text-halloween-purple mb-1">
                     {stat.value}
                   </div>
@@ -87,46 +80,44 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  icon: 'sparkles',
+                  icon: '🤖',
                   title: 'AI-Powered Summaries',
                   description: 'Get instant AI-generated summaries of articles, saving you time and helping you stay informed.',
                   color: 'orange',
                 },
                 {
-                  icon: 'bolt',
+                  icon: '🔄',
                   title: 'Smart Deduplication',
                   description: 'Automatically detect and remove duplicate articles across multiple feeds.',
                   color: 'purple',
                 },
                 {
-                  icon: 'moon',
+                  icon: '🌙',
                   title: 'Dark Mode',
                   description: 'Beautiful dark mode that is easy on your eyes during late-night reading sessions.',
                   color: 'green',
                 },
                 {
-                  icon: 'phone',
+                  icon: '📱',
                   title: 'Responsive Design',
                   description: 'Seamless experience across all devices - desktop, tablet, and mobile.',
                   color: 'orange',
                 },
                 {
-                  icon: 'shield',
+                  icon: '🔒',
                   title: 'Privacy First',
                   description: 'Your data stays private. No tracking, no ads, just pure RSS goodness.',
                   color: 'purple',
                 },
                 {
-                  icon: 'bolt',
+                  icon: '⚡',
                   title: 'Lightning Fast',
                   description: 'Built with Next.js 16 and Turbopack for blazing fast performance.',
                   color: 'green',
                 },
               ].map((feature) => (
                 <Card key={feature.title} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="flex justify-center mb-4">
-                    <Icon name={feature.icon as any} size="xl" className="text-halloween-orange dark:text-halloween-purple" />
-                  </div>
+                  <div className="text-5xl mb-4">{feature.icon}</div>
                   <h3 className="text-xl font-bold mb-3 text-neutral-900 dark:text-neutral-50">
                     {feature.title}
                   </h3>
@@ -169,19 +160,18 @@ export default function Home() {
         </div>
 
         {/* CTA Section */}
-        <div className="py-20 bg-gradient-to-br from-neutral-900 via-neutral-950 to-black border-t border-neutral-800">
+        <div className="py-20 bg-gradient-to-r from-halloween-orange to-halloween-purple">
           <div className="container mx-auto px-4 max-w-4xl text-center text-white">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Ready to Transform Your RSS Experience?
             </h2>
-            <p className="text-xl md:text-2xl mb-8 text-neutral-300">
+            <p className="text-xl md:text-2xl mb-8 opacity-90">
               Join hundreds of users who are already enjoying intelligent feed reading
             </p>
             <Link
               href="/feeds"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-halloween-orange text-white font-bold text-lg rounded-xl hover:bg-halloween-purple transition-all duration-300 hover:scale-105 shadow-2xl"
+              className="inline-block px-10 py-5 bg-white text-halloween-orange font-bold text-lg rounded-xl hover:bg-neutral-100 transition-all duration-300 hover:scale-105 shadow-2xl"
             >
-              <Icon name="plus" size="lg" />
               Add Your First Feed
             </Link>
           </div>
@@ -195,7 +185,7 @@ export default function Home() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-4">
-                <Icon name="rss" variant="solid" size="xl" className="text-halloween-orange dark:text-halloween-purple" />
+                <span className="text-3xl">🎃</span>
                 <div>
                   <p className="text-xl font-bold text-neutral-900 dark:text-neutral-50">
                     {APP_CONFIG.name}
