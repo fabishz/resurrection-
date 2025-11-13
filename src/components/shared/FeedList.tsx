@@ -1,12 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import FeedItem from './FeedItem';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 
-// Mock data for demonstration with articles
-const mockFeeds = [
+// TODO: Replace with real data from API
+const initialFeeds = [
   {
     id: '1',
     name: 'TechCrunch',
@@ -88,7 +89,8 @@ const mockFeeds = [
 ];
 
 export default function FeedList() {
-  const totalUnread = mockFeeds.reduce((acc, feed) => acc + feed.unreadCount, 0);
+  const [feeds] = useState(initialFeeds);
+  const totalUnread = feeds.reduce((acc, feed) => acc + feed.unreadCount, 0);
 
   return (
     <Card>
@@ -100,8 +102,8 @@ export default function FeedList() {
       </div>
 
       <div className="space-y-3">
-        {mockFeeds.length > 0 ? (
-          mockFeeds.map((feed) => <FeedItem key={feed.id} feed={feed} />)
+        {feeds.length > 0 ? (
+          feeds.map((feed) => <FeedItem key={feed.id} feed={feed} />)
         ) : (
           <div className="text-center py-8">
             <div className="text-4xl mb-2">📭</div>
