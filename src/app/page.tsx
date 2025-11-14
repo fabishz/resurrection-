@@ -237,6 +237,29 @@ export default function Home() {
                 <li>Offline Mode</li>
               </ul>
             </div>
+
+            {/* Legal */}
+            <div>
+              <h3 className="font-bold text-neutral-900 dark:text-neutral-50 mb-4">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/terms"
+                    className="text-neutral-600 dark:text-neutral-400 hover:text-halloween-orange dark:hover:text-halloween-purple transition-colors"
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="text-neutral-600 dark:text-neutral-400 hover:text-halloween-orange dark:hover:text-halloween-purple transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-600 dark:text-neutral-400">
