@@ -82,9 +82,10 @@ export default function FeedList() {
       <div className="space-y-3">
         {feeds.length > 0 ? (
           feeds.map((feed) => (
-            <div
+            <Link
               key={feed.id}
-              className="p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors"
+              href={`/feed/${feed.id}`}
+              className="block p-4 bg-neutral-700 rounded-lg hover:bg-neutral-600 transition-colors"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1 min-w-0">
@@ -104,7 +105,7 @@ export default function FeedList() {
                   Latest: {feed.latestArticle}
                 </p>
               )}
-            </div>
+            </Link>
           ))
         ) : (
           <div className="text-center py-8">

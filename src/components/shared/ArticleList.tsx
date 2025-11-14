@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Card from '@/components/ui/Card';
-import Badge from '@/components/ui/Badge';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import Icon from '@/components/ui/Icon';
+import ArticleCard from './ArticleCard';
 import { getAllArticles } from '@/lib/api-client';
 
 interface Article {
@@ -13,6 +13,7 @@ interface Article {
   feedId: string;
   title: string;
   link: string;
+  content: string;
   contentSnippet: string;
   pubDate: string;
   author?: string;
@@ -101,58 +102,7 @@ export default function ArticleList() {
   return (
     <div className="space-y-4">
       {articles.map((article) => (
-        <Card key={article.id} className="bg-neutral-800 border-neutral-700 hover:shadow-xl hover:shadow-neutral-900/50 transition-all duration-300 hover:-translate-y-1">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4 mb-2">
-              <a
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-lg font-semibold text-white hover:text-halloween-orange transition-colors flex-1"
-              >
-                {article.title}
-              </a>
-              {article.categories && article.categories.length > 0 && (
-                <Badge variant="purple" className="flex-shrink-0">
-                  {article.categories[0]}
-                </Badge>
-              )}
-            </div>
-            
-            <p className="text-sm text-neutral-400 mb-3 line-clamp-2">
-              {article.contentSnippet}
-            </p>
-            
-            <div className="flex items-center justify-between text-xs text-neutral-500">
-              <div className="flex items-center gap-3">
-                <span className="font-medium text-neutral-300">{article.feedTitle}</span>
-                <span>•</span>
-                <time dateTime={article.pubDate}>
-                  {new Date(article.pubDate).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
-                </time>
-                {article.author && (
-                  <>
-                    <span>•</span>
-                    <span className="text-neutral-400">{article.author}</span>
-                  </>
-                )}
-              </div>
-              
-              <a
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-halloween-orange hover:text-halloween-purple transition-colors font-medium"
-              >
-                Read →
-              </a>
-            </div>
-          </div>
-        </Card>
+        <ArticleCard key={article.id} article={article} />
       ))}
     </div>
   );

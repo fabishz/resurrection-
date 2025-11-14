@@ -58,16 +58,83 @@ export async function ingestFeed(
  * Get feed details by ID
  */
 export async function getFeed(feedId: string) {
-  return fetchAPI(`/ingest?feedId=${feedId}`, {
+  return fetchAPI<{
+    success: boolean;
+    feed: {
+      id: string;
+      url: string;
+      title: string;
+      description?: string;
+      link?: string;
+      lastFetched: string;
+      itemCount: number;
+    };
+  }>(`/ingest?feedId=${feedId}`, {
     method: 'GET',
   });
 }
 
 /**
- * Summarize article content
+ * Get feed details with all articles
+ */
+export async function getFeedWithArticles(feedId: string) {
+  return fetchAPI<{
+    success: boolean;
+    feed: {
+      id: string;
+      url: string;
+      title: string;
+      description?: string;
+      link?: string;
+      lastFetched: string;
+      itemCount: number;
+    };
+    articles: Array<{
+      id: string;
+      feedId: string;
+      title: string;
+      link: string;
+      content: string;
+      contentSnippet: string;
+      pubDate: string;
+      author?: string;
+      categories?: string[];
+    }>;
+    articleCount: number;
+  }>(`/feed/${feedId}`, {
+    method: 'GET',
+  });
+}
+
+/**
+ * Summarize article content by ID
+ */
+export async function summarizeArticleById(articleId: string) {
+  return fetchAPI<{
+    success: boolean;
+    summary: string;
+    keyPoints?: string[];
+    sentiment?: 'positive' | 'negative' | 'neutral';
+    categories?: string[];
+    processingTime?: number;
+  }>('/summarize', {
+    method: 'POST',
+    body: JSON.stringify({ articleId }),
+  });
+}
+
+/**
+ * Summarize article content directly
  */
 export async function summarizeArticle(content: string, title?: string) {
-  return fetchAPI('/summarize', {
+  return fetchAPI<{
+    success: boolean;
+    summary: string;
+    keyPoints?: string[];
+    sentiment?: 'positive' | 'negative' | 'neutral';
+    categories?: string[];
+    processingTime?: number;
+  }>('/summarize', {
     method: 'POST',
     body: JSON.stringify({ content, title }),
   });

@@ -5,7 +5,9 @@ import Header from '@/components/shared/Header';
 import FeedList from '@/components/shared/FeedList';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { ingestFeed } from '@/lib/api-client';
+import Toast from '@/components/ui/Toast';
+import { useToast } from '@/hooks/useToast';
+import { ingestFeed, getFeed } from '@/lib/api-client';
 
 export default function FeedsPage() {
   const [feedUrl, setFeedUrl] = useState('');
@@ -13,21 +15,44 @@ export default function FeedsPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [lastIngestedFeed, setLastIngestedFeed] = useState<{
+    feedId: string;
+    title: string;
+    itemsIngested: number;
+  } | null>(null);
+
+  const { toasts, hideToast, success: showSuccessToast, error: showErrorToast } = useToast();
 
   const handleAddFeed = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccess(null);
+    setLastIngestedFeed(null);
 
     try {
       const result = await ingestFeed(feedUrl);
-      setSuccess(`Successfully added "${result.items[0]?.feedId || 'feed'}"! Ingested ${result.itemsIngested} articles.`);
+      
+      // Get feed details to show title
+      const feedDetails = await getFeed(result.feedId);
+      const feedTitle = feedDetails.feed?.title || result.feedId;
+      
+      setLastIngestedFeed({
+        feedId: result.feedId,
+        title: feedTitle,
+        itemsIngested: result.itemsIngested,
+      });
+      
+      setSuccess(`Successfully added "${feedTitle}"! Ingested ${result.itemsIngested} articles.`);
+      showSuccessToast(`Added ${feedTitle} with ${result.itemsIngested} articles`);
       setFeedUrl('');
+      
       // Trigger feed list refresh
       setRefreshKey(prev => prev + 1);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to add feed');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to add feed';
+      setError(errorMessage);
+      showErrorToast(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -35,6 +60,16 @@ export default function FeedsPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-900">
+      {/* Toast Notifications */}
+      {toasts.map((toast) => (
+        <Toast
+          key={toast.id}
+          message={toast.message}
+          type={toast.type}
+          onClose={() => hideToast(toast.id)}
+        />
+      ))}
+      
       <Header />
       
       {/* Hero Section */}
@@ -81,9 +116,26 @@ export default function FeedsPage() {
                   </div>
                 )}
 
-                {success && (
+                {success && lastIngestedFeed && (
                   <div className="p-4 bg-green-900/30 border border-green-700 rounded-lg">
-                    <p className="text-sm text-green-200">{success}</p>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-700 rounded-full flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-green-200 mb-1">
+                          Feed Added Successfully!
+                        </p>
+                        <p className="text-sm text-green-300">
+                          <span className="font-medium">{lastIngestedFeed.title}</span>
+                        </p>
+                        <p className="text-xs text-green-400 mt-1">
+                          Feed ID: {lastIngestedFeed.feedId} • {lastIngestedFeed.itemsIngested} articles ingested
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
