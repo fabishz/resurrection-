@@ -16,6 +16,10 @@ export const APP_CONFIG = {
     { name: 'Home', href: '/', icon: '🏠' },
     { name: 'Feeds', href: '/feeds', icon: '📰' },
     { name: 'Discover', href: '/discover', icon: '🔍' },
+    { name: 'Features', href: '/features', icon: '✨' },
+    { name: 'About', href: '/about', icon: 'ℹ️' },
+    { name: 'Help', href: '/help', icon: '❓' },
+    { name: 'Contact', href: '/contact', icon: '📧' },
   ],
   
   // Features
