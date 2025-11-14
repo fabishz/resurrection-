@@ -32,30 +32,34 @@ export default function FeedsPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-neutral-900">
       <Header />
       
-      <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-3 text-neutral-900 dark:text-neutral-50">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-neutral-900 via-neutral-950 to-black py-16 px-4 border-b border-neutral-800">
+        <div className="container mx-auto max-w-7xl text-center">
+          <h1 className="text-5xl font-bold mb-4 text-white">
             Manage Your Feeds
           </h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400">
+          <p className="text-xl text-neutral-300">
             Add and organize your RSS feeds
           </p>
         </div>
+      </div>
+      
+      <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Add Feed Form */}
           <div className="lg:col-span-2">
-            <Card className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-neutral-50">
+            <Card className="mb-8 bg-neutral-800 border-neutral-700">
+              <h2 className="text-2xl font-semibold mb-4 text-white">
                 Add New Feed
               </h2>
               
               <form onSubmit={handleAddFeed} className="space-y-4">
                 <div>
-                  <label htmlFor="feedUrl" className="block text-sm font-medium mb-2 text-neutral-900 dark:text-neutral-50">
+                  <label htmlFor="feedUrl" className="block text-sm font-medium mb-2 text-white">
                     RSS Feed URL
                   </label>
                   <input
@@ -65,19 +69,19 @@ export default function FeedsPage() {
                     onChange={(e) => setFeedUrl(e.target.value)}
                     placeholder="https://example.com/feed.xml"
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50 focus:outline-none focus:ring-2 focus:ring-halloween-orange transition-shadow"
+                    className="w-full px-4 py-3 rounded-lg border border-neutral-600 bg-neutral-700 text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-halloween-orange transition-shadow"
                   />
                 </div>
 
                 {error && (
-                  <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                    <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                  <div className="p-4 bg-red-900/30 border border-red-700 rounded-lg">
+                    <p className="text-sm text-red-200">{error}</p>
                   </div>
                 )}
 
                 {success && (
-                  <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                    <p className="text-sm text-green-800 dark:text-green-200">{success}</p>
+                  <div className="p-4 bg-green-900/30 border border-green-700 rounded-lg">
+                    <p className="text-sm text-green-200">{success}</p>
                   </div>
                 )}
 
@@ -91,8 +95,8 @@ export default function FeedsPage() {
                 </Button>
               </form>
 
-              <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-800">
-                <h3 className="text-sm font-semibold mb-3 text-neutral-900 dark:text-neutral-50">
+              <div className="mt-6 pt-6 border-t border-neutral-700">
+                <h3 className="text-sm font-semibold mb-3 text-white">
                   Popular Feeds
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -105,7 +109,7 @@ export default function FeedsPage() {
                     <button
                       key={feed.name}
                       onClick={() => setFeedUrl(feed.url)}
-                      className="px-4 py-2 text-left text-sm bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+                      className="px-4 py-2 text-left text-sm bg-neutral-700 hover:bg-neutral-600 text-white rounded-lg transition-colors"
                     >
                       {feed.name}
                     </button>

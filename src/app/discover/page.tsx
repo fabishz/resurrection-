@@ -42,21 +42,25 @@ export default function DiscoverPage() {
     <div className="min-h-screen flex flex-col bg-neutral-900">
       <Header />
       
-      <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-3 text-white">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-neutral-900 via-neutral-950 to-black py-16 px-4 border-b border-neutral-800">
+        <div className="container mx-auto max-w-7xl text-center">
+          <h1 className="text-5xl font-bold mb-4 text-white">
             Discover Feeds
           </h1>
           <p className="text-xl text-neutral-300">
             Explore popular RSS feeds across different categories
           </p>
         </div>
+      </div>
+      
+      <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
 
         <div className="space-y-8">
           {FEATURED_FEEDS.map((category) => (
             <div key={category.category}>
               <div className="flex items-center gap-3 mb-4">
-                <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
+                <h2 className="text-2xl font-semibold text-white">
                   {category.category}
                 </h2>
                 <Badge variant="purple">{category.feeds.length} feeds</Badge>
@@ -64,16 +68,16 @@ export default function DiscoverPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {category.feeds.map((feed) => (
-                  <Card key={feed.name} className="hover:shadow-lg transition-shadow duration-300">
+                  <Card key={feed.name} className="bg-neutral-800 border-neutral-700 hover:shadow-xl hover:shadow-neutral-900/50 transition-all duration-300 hover:-translate-y-1">
                     <div className="flex flex-col h-full">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                        <h3 className="text-lg font-semibold text-white">
                           {feed.name}
                         </h3>
                         <Badge variant="orange">{feed.subscribers}</Badge>
                       </div>
                       
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 flex-1">
+                      <p className="text-sm text-neutral-400 mb-4 flex-1">
                         {feed.description}
                       </p>
                       
@@ -88,14 +92,14 @@ export default function DiscoverPage() {
           ))}
         </div>
 
-        <div className="mt-12 p-8 bg-gradient-to-r from-halloween-orange to-halloween-purple rounded-2xl text-white text-center">
+        <div className="mt-12 p-8 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-2xl text-white text-center border border-neutral-700">
           <h2 className="text-3xl font-bold mb-3">Can't find what you're looking for?</h2>
-          <p className="text-lg mb-6 opacity-90">
+          <p className="text-lg mb-6 text-neutral-300">
             Add any RSS feed URL manually from the Feeds page
           </p>
           <a
             href="/feeds"
-            className="inline-block px-8 py-3 bg-white text-halloween-orange font-semibold rounded-xl hover:bg-neutral-100 transition-colors"
+            className="inline-block px-8 py-3 bg-halloween-orange text-white font-semibold rounded-xl hover:bg-halloween-purple transition-colors"
           >
             Go to Feeds
           </a>
