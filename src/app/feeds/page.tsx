@@ -5,7 +5,6 @@ import Header from '@/components/shared/Header';
 import FeedList from '@/components/shared/FeedList';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { APP_CONFIG } from '@/config/app';
 import { ingestFeed } from '@/lib/api-client';
 
 export default function FeedsPage() {
@@ -13,6 +12,7 @@ export default function FeedsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const handleAddFeed = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,8 +22,10 @@ export default function FeedsPage() {
 
     try {
       const result = await ingestFeed(feedUrl);
-      setSuccess(`Successfully added feed! Ingested ${result.itemsIngested} articles.`);
+      setSuccess(`Successfully added "${result.items[0]?.feedId || 'feed'}"! Ingested ${result.itemsIngested} articles.`);
       setFeedUrl('');
+      // Trigger feed list refresh
+      setRefreshKey(prev => prev + 1);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to add feed');
     } finally {
@@ -121,7 +123,7 @@ export default function FeedsPage() {
 
           {/* Feed List Sidebar */}
           <div className="lg:col-span-1">
-            <FeedList />
+            <FeedList key={refreshKey} />
           </div>
         </div>
       </main>

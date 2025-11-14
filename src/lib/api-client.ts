@@ -74,26 +74,53 @@ export async function summarizeArticle(content: string, title?: string) {
 }
 
 /**
- * Get all feeds (from storage)
- * This would typically come from a database in production
+ * Get all feeds with their item counts
  */
 export async function getAllFeeds() {
-  // For now, this returns mock data
-  // In production, this would call a real API endpoint
-  return {
-    success: true,
-    feeds: [],
-  };
+  return fetchAPI<{
+    success: boolean;
+    feeds: Array<{
+      id: string;
+      url: string;
+      title: string;
+      description?: string;
+      link?: string;
+      lastFetched: string;
+      itemCount: number;
+      latestArticle?: string | null;
+      latestArticleDate?: string | null;
+    }>;
+    totalFeeds: number;
+    totalArticles: number;
+  }>('/feeds', {
+    method: 'GET',
+  });
 }
 
 /**
  * Get all articles across feeds
  */
-export async function getAllArticles() {
-  // For now, this returns mock data
-  // In production, this would call a real API endpoint
-  return {
-    success: true,
-    articles: [],
-  };
+export async function getAllArticles(limit = 50, offset = 0) {
+  return fetchAPI<{
+    success: boolean;
+    articles: Array<{
+      id: string;
+      feedId: string;
+      title: string;
+      link: string;
+      content: string;
+      contentSnippet: string;
+      pubDate: string;
+      author?: string;
+      categories?: string[];
+      feedTitle: string;
+      feedUrl: string;
+    }>;
+    total: number;
+    limit: number;
+    offset: number;
+    hasMore: boolean;
+  }>(`/articles?limit=${limit}&offset=${offset}`, {
+    method: 'GET',
+  });
 }

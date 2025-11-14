@@ -21,16 +21,11 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 max-w-7xl">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <Icon name="rss" variant="solid" size="lg" className="text-halloween-orange dark:text-halloween-purple" />
-            <div>
-              <h1 className="text-xl font-semibold text-white">
-                {APP_CONFIG.name}
-              </h1>
-              <p className="text-xs text-neutral-400">
-                {APP_CONFIG.description.split(' ').slice(0, 3).join(' ')}
-              </p>
-            </div>
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <Icon name="rss" variant="solid" size="lg" className="text-halloween-orange" />
+            <h1 className="text-xl font-bold text-white">
+              RSS<span className="text-halloween-orange">•</span>AI
+            </h1>
           </Link>
 
           {/* Navigation */}

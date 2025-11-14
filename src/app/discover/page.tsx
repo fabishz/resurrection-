@@ -1,7 +1,12 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/shared/Header';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
-import { APP_CONFIG } from '@/config/app';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { ingestFeed } from '@/lib/api-client';
 
 const FEATURED_FEEDS = [
   {
@@ -38,6 +43,23 @@ const FEATURED_FEEDS = [
 ];
 
 export default function DiscoverPage() {
+  const router = useRouter();
+  const [loadingFeed, setLoadingFeed] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleAddFeed = async (feedUrl: string, feedName: string) => {
+    try {
+      setLoadingFeed(feedUrl);
+      setError(null);
+      await ingestFeed(feedUrl);
+      // Redirect to feeds page after successful addition
+      router.push('/feeds');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to add feed');
+      setLoadingFeed(null);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-900">
       <Header />
@@ -55,6 +77,11 @@ export default function DiscoverPage() {
       </div>
       
       <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
+        {error && (
+          <div className="mb-6 p-4 bg-red-900/30 border border-red-700 rounded-lg">
+            <p className="text-sm text-red-200">{error}</p>
+          </div>
+        )}
 
         <div className="space-y-8">
           {FEATURED_FEEDS.map((category) => (
@@ -81,8 +108,19 @@ export default function DiscoverPage() {
                         {feed.description}
                       </p>
                       
-                      <button className="w-full px-4 py-2 bg-halloween-orange hover:bg-halloween-purple text-white rounded-lg font-medium transition-colors duration-300">
-                        Add Feed
+                      <button
+                        onClick={() => handleAddFeed(feed.url, feed.name)}
+                        disabled={loadingFeed === feed.url}
+                        className="w-full px-4 py-2 bg-halloween-orange hover:bg-halloween-purple text-white rounded-lg font-medium transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      >
+                        {loadingFeed === feed.url ? (
+                          <>
+                            <LoadingSpinner size="sm" />
+                            Adding...
+                          </>
+                        ) : (
+                          'Add Feed'
+                        )}
                       </button>
                     </div>
                   </Card>
