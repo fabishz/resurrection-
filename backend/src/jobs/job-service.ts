@@ -183,7 +183,7 @@ export class JobService {
   async getAllQueueStats() {
     const stats: Record<string, any> = {};
 
-    for (const [name, queue] of this.queues.entries()) {
+    for (const [name] of this.queues.entries()) {
       stats[name] = await this.getQueueStats(name);
     }
 
