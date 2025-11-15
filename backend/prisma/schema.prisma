@@ -1,0 +1,77 @@
+// Prisma Schema for RSS Renaissance Backend
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Feed {
+  id          String    @id @default(cuid())
+  url         String    @unique
+  title       String
+  description String?
+  link        String?
+  imageUrl    String?
+  lastFetched DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  articles    Article[]
+  
+  @@index([url])
+  @@index([lastFetched])
+}
+
+model Article {
+  id             String    @id @default(cuid())
+  feedId         String
+  title          String
+  link           String    @unique
+  content        String?   @db.Text
+  contentSnippet String?
+  pubDate        DateTime
+  author         String?
+  guid           String?   @unique
+  imageUrl       String?
+  categories     String[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  
+  feed           Feed      @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  summary        Summary?
+  
+  @@index([feedId])
+  @@index([pubDate])
+  @@index([link])
+  @@index([guid])
+}
+
+model Summary {
+  id            String   @id @default(cuid())
+  articleId     String   @unique
+  summary       String   @db.Text
+  keyPoints     String[]
+  sentiment     String?
+  categories    String[]
+  processingTime Int?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  article       Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  
+  @@index([articleId])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([email])
+}
